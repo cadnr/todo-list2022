@@ -10,6 +10,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/dom.js":
+/*!********************!*\
+  !*** ./src/dom.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"dom\": () => (/* binding */ dom)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n\n\n\n\nconst divList = document.getElementById('list');\n\nlet dom = {\n\n    clearList: () => {\n        divList.replaceChildren();\n    },\n    \n    updateList: () => {\n    \n        divList.replaceChildren();\n        const lists = _storage__WEBPACK_IMPORTED_MODULE_0__.storage.read();\n        let currentList = [];\n        lists.forEach((element) => {\n            if(element.name == 'defaultList') {\n                currentList = element.todos;\n            };\n        });\n    \n        console.log(currentList);\n    \n        \n        const genList = document.createElement('div');\n        const addButton = document.createElement('button');\n        addButton.textContent = 'Add';\n        genList.appendChild(addButton);\n    \n        currentList.forEach((element, index) => {\n            const tempDiv = document.createElement('div');\n            tempDiv.setAttribute('data-index', index);\n            tempDiv.textContent = element.title;\n            \n            const deleteButton = document.createElement('button');\n            deleteButton.textContent = 'Delete';\n            deleteButton.classList.add('delete-button');\n            tempDiv.appendChild(deleteButton);\n    \n            genList.appendChild(tempDiv);\n            \n        });\n        divList.appendChild(genList);\n\n        \n    },\n    eventListener: () => {\n        window.addEventListener('click', e => {\n            console.log(e);\n            console.log(e.target);\n            if (e.target.classList.contains('delete-button')) {\n                const lists = _storage__WEBPACK_IMPORTED_MODULE_0__.storage.read();\n                const index = e.path[1].getAttribute('data-index');\n                lists[1].todos.splice(index, 1);\n                console.log('clicked delete button');\n                console.log(lists);\n                _storage__WEBPACK_IMPORTED_MODULE_0__.storage.write(lists[1]);\n        \n                dom.clearList();\n                dom.updateList();\n            }\n        });\n    },\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/dom.js?");
+
+/***/ }),
+
 /***/ "./src/dummyLists.js":
 /*!***************************!*\
   !*** ./src/dummyLists.js ***!
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n/* harmony import */ var _dummyLists__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dummyLists */ \"./src/dummyLists.js\");\n'use scrict';\n\n\n\n\nlocalStorage.clear();\n(0,_dummyLists__WEBPACK_IMPORTED_MODULE_1__.dummyLists)();\n\nconst lists = _storage__WEBPACK_IMPORTED_MODULE_0__.storage.read();\nconsole.log(lists);\n\nlet currentList = [];\nlists.forEach((element) => {\n    if(element.name == 'defaultList') {\n        currentList = element.todos;\n    };\n});\n\nconsole.log(currentList);\n\nconst divList = document.getElementById('list');\nconst genList = document.createElement('div');\n\ncurrentList.forEach((element) => {\n    const tempDiv = document.createElement('div');\n    tempDiv.textContent = element.title;\n    genList.appendChild(tempDiv);\n});\n\ndivList.appendChild(genList);\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dummyLists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dummyLists */ \"./src/dummyLists.js\");\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dom */ \"./src/dom.js\");\n'use scrict';\n\n\n\n\n// localStorage.clear();\n// dummyLists();\n\n_dom__WEBPACK_IMPORTED_MODULE_1__.dom.updateList();\n_dom__WEBPACK_IMPORTED_MODULE_1__.dom.eventListener();\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 
