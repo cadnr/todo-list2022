@@ -17,16 +17,28 @@ let dom = {
         divList.replaceChildren();
         const lists = storage.read();
         let currentList = [];
+        const nav = document.createElement('nav');
         lists.forEach((element) => {
             if(element.name == dom.selectedList) {
                 currentList = element.todos;
             };
+            const tempA = document.createElement('a');
+            tempA.textContent = element.name;
+            nav.appendChild(tempA);
         });
-    
-        // console.log(currentList);
-    
         
         const genList = document.createElement('div');
+        const newListDiv = document.createElement('div');
+        const newListButton = document.createElement('button');
+        newListButton.classList.add('new-list-button');
+        newListButton.textContent = 'New list';
+        const newListInput = document.createElement('input');
+        newListInput.classList.add('new-list-input');
+        newListDiv.append(newListButton, newListInput);
+
+        genList.appendChild(newListDiv);
+
+        genList.appendChild(nav);
         const addButton = document.createElement('button');
         addButton.textContent = 'Add';
         addButton.classList.add('add-button');
@@ -74,6 +86,16 @@ let dom = {
                 lists[1].todos.push(todosFactory(input.value));
                 storage.write(lists[1]);
                 dom.updateList();
+            } else if(e.target.classList.contains('new-list-button')) {
+                const input = document.querySelector('.new-list-input');
+                console.log(input.value);
+                storage.newList(input.value);
+                dom.updateList();
+                // const lists = storage.read();
+                // const index = e.path[1].getAttribute('data-index');
+                // lists[1].todos.push(todosFactory(input.value));
+                // storage.write(lists[1]);
+                // dom.updateList();
             };
         });
     },

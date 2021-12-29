@@ -1,5 +1,8 @@
 'use strict';
 
+import { dom } from "./dom";
+import { listsFactory } from "./factories";
+
 let storage = {
     
     write: function(listObject) {
@@ -14,6 +17,10 @@ let storage = {
             ));
         }
         return arr;
+    },
+    newList: (listName) => {
+        const listObject = listsFactory(listName);
+        storage.write(listObject);
     },
 };
 
