@@ -1,10 +1,12 @@
 'use strict';
 
+import { todosFactory } from "./factories";
 import { storage } from "./storage";
 
 const divList = document.getElementById('list');
 
 let dom = {
+    selectedList: 'defaultList',
 
     clearList: () => {
         divList.replaceChildren();
@@ -16,18 +18,22 @@ let dom = {
         const lists = storage.read();
         let currentList = [];
         lists.forEach((element) => {
-            if(element.name == 'defaultList') {
+            if(element.name == dom.selectedList) {
                 currentList = element.todos;
             };
         });
     
-        console.log(currentList);
+        // console.log(currentList);
     
         
         const genList = document.createElement('div');
         const addButton = document.createElement('button');
         addButton.textContent = 'Add';
+        addButton.classList.add('add-button');
+        const addForm = document.createElement('input');
+        addForm.classList.add('add-form');
         genList.appendChild(addButton);
+        genList.appendChild(addForm);
     
         currentList.forEach((element, index) => {
             const tempDiv = document.createElement('div');
@@ -60,7 +66,15 @@ let dom = {
         
                 dom.clearList();
                 dom.updateList();
-            }
+            } else if(e.target.classList.contains('add-button')) {
+                const input = document.querySelector('.add-form');
+                console.log(input.value);
+                const lists = storage.read();
+                const index = e.path[1].getAttribute('data-index');
+                lists[1].todos.push(todosFactory(input.value));
+                storage.write(lists[1]);
+                dom.updateList();
+            };
         });
     },
 };
