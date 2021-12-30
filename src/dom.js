@@ -47,20 +47,22 @@ let dom = {
         addForm.classList.add('add-form');
         genList.appendChild(addButton);
         genList.appendChild(addForm);
-    
-        currentList.forEach((element, index) => {
-            const tempDiv = document.createElement('div');
-            tempDiv.setAttribute('data-index', index);
-            tempDiv.textContent = element.title;
-            
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.classList.add('delete-button');
-            tempDiv.appendChild(deleteButton);
-    
-            genList.appendChild(tempDiv);
-            
-        });
+        
+        if(currentList && currentList[0]) {
+            currentList.forEach((element, index) => {
+                const tempDiv = document.createElement('div');
+                tempDiv.setAttribute('data-index', index);
+                tempDiv.textContent = element.title;
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('delete-button');
+                tempDiv.appendChild(deleteButton);
+        
+                genList.appendChild(tempDiv);
+                
+            });
+        };
         divList.appendChild(genList);
 
         
