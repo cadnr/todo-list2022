@@ -1,0 +1,29 @@
+nav {
+    background-color: turquoise;
+    padding: 10px;
+    margin: 5px;
+}
+
+a {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    background-color: yellowgreen;
+    border-style: solid;
+}
+
+div {
+    margin: 0 10px 0 10px;
+    padding: 3px;
+}
+
+footer {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    padding: 5px;
+    margin: 0 10px 0 10px;
+}
