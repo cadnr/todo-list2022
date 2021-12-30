@@ -24,6 +24,7 @@ let dom = {
             };
             const tempA = document.createElement('a');
             tempA.textContent = element.name;
+            tempA.setAttribute('data-list-key', element.name);
             nav.appendChild(tempA);
         });
         
@@ -64,10 +65,16 @@ let dom = {
 
         
     },
+
+    changeList: (newSelectedList) => {
+        dom.selectedList = newSelectedList;
+        dom.updateList();
+    },
+
     eventListener: () => {
         window.addEventListener('click', e => {
             console.log(e);
-            console.log(e.target);
+            console.log(e.target.attributes);
             if (e.target.classList.contains('delete-button')) {
                 const lists = storage.read();
                 const index = e.path[1].getAttribute('data-index');
@@ -90,12 +97,10 @@ let dom = {
                 const input = document.querySelector('.new-list-input');
                 console.log(input.value);
                 storage.newList(input.value);
-                dom.updateList();
-                // const lists = storage.read();
-                // const index = e.path[1].getAttribute('data-index');
-                // lists[1].todos.push(todosFactory(input.value));
-                // storage.write(lists[1]);
-                // dom.updateList();
+                dom.updateList();            
+            } else if (e.target.hasAttribute('data-list-key')) {
+                const newSelectedList = e.target.getAttribute('data-list-key');
+                dom.changeList(newSelectedList);
             };
         });
     },
