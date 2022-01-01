@@ -27,3 +27,7 @@ button {
     padding: 5px;
     margin: 0 10px 0 10px;
 }
+
+a.active {
+    background-color: orange;
+}
