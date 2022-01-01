@@ -2,6 +2,7 @@
 
 import { todosFactory } from "./factories";
 import { storage } from "./storage";
+import { eventListener } from "./eventListener";
 
 const divList = document.getElementById('list');
 
@@ -76,40 +77,8 @@ let dom = {
     },
 
     eventListener: () => {
-        window.addEventListener('click', e => {
-            console.log(e);
-            console.log(e.target.attributes);
-            if (e.target.classList.contains('delete-button')) {
-                const lists = storage.read();
-                const index = e.path[1].getAttribute('data-index');
-                let list = storage.fetchList(dom.selectedList);
-                list.todos.splice(index, 1);
-                
-                storage.write(list);
-        
-                dom.clearList();
-                dom.updateList();
-            } else if(e.target.classList.contains('add-button')) {
-                const input = document.querySelector('.add-form');
-                console.log(input.value);
-                const lists = storage.read();
-                const index = e.path[1].getAttribute('data-index');
-                let list = storage.fetchList(dom.selectedList);
-                console.log(list.todos);
-                list.todos.push(todosFactory(input.value));
-                storage.write(list);
-                dom.updateList();
-            } else if(e.target.classList.contains('new-list-button')) {
-                const input = document.querySelector('.new-list-input');
-                console.log(input.value);
-                storage.newList(input.value);
-                dom.updateList();            
-            } else if (e.target.hasAttribute('data-list-key')) {
-                const newSelectedList = e.target.getAttribute('data-list-key');
-                dom.changeList(newSelectedList);
-            };
-        });
+        eventListener();
     },
 };
 
-export { dom }
+export { dom };
