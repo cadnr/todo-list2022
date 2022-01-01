@@ -19,12 +19,14 @@ let dom = {
         let currentList = [];
         const nav = document.createElement('nav');
         lists.forEach((element) => {
-            if(element.name == dom.selectedList) {
-                currentList = element.todos;
-            };
+           
             const tempA = document.createElement('a');
             tempA.textContent = element.name;
             tempA.setAttribute('data-list-key', element.name);
+            if(element.name == dom.selectedList) {
+                currentList = element.todos;
+                tempA.classList.add('active');
+            };
             nav.appendChild(tempA);
         });
         
