@@ -19,8 +19,7 @@ let storage = {
         return arr;
     },
     newList: (listName) => {
-        const todos = {};
-        const listObject = listsFactory(listName, todos);
+        const listObject = listsFactory(listName);
         storage.write(listObject);
     },
 };

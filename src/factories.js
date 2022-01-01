@@ -1,6 +1,9 @@
 'use strict';
 
 const listsFactory = (name, todos) => {
+    if(todos == undefined) {
+        return { name, todos: [] }
+    };
     return { name, todos }
 };
 
