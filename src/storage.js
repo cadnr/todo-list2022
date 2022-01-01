@@ -19,8 +19,10 @@ let storage = {
         return arr;
     },
     newList: (listName) => {
-        const listObject = listsFactory(listName);
-        storage.write(listObject);
+        if(!storage.fetchList(listName)) {
+            const listObject = listsFactory(listName);
+            storage.write(listObject);
+        }   
     },
     fetchList: (listName) => {
         const arr = storage.read();
