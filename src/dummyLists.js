@@ -7,14 +7,16 @@ const dummyLists = () => {
     let list = [];
     for(let i = 0; i < 10; i++) {
         
-        list.push(todosFactory('Default list item ' + i));
+        list.push(todosFactory('Default list item ' + i,
+                 'description ' + i));
     }
     let listObject = listsFactory('defaultList', list);
     storage.write(listObject);
 
     list = [];
     for(let i = 0; i < 10; i++) {
-        list.push(todosFactory('Other list item ' + i));
+        list.push(todosFactory('Other list item ' + i,
+                'description ' + i));
     }
     listObject = listsFactory('otherList', list);
     storage.write(listObject);
