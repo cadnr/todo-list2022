@@ -80,10 +80,10 @@ let dom = {
             if (e.target.classList.contains('delete-button')) {
                 const lists = storage.read();
                 const index = e.path[1].getAttribute('data-index');
-                lists[1].todos.splice(index, 1);
-                console.log('clicked delete button');
-                console.log(lists);
-                storage.write(lists[1]);
+                let list = storage.fetchList(dom.selectedList);
+                list.todos.splice(index, 1);
+                
+                storage.write(list);
         
                 dom.clearList();
                 dom.updateList();
@@ -92,8 +92,10 @@ let dom = {
                 console.log(input.value);
                 const lists = storage.read();
                 const index = e.path[1].getAttribute('data-index');
-                lists[1].todos.push(todosFactory(input.value));
-                storage.write(lists[1]);
+                let list = storage.fetchList(dom.selectedList);
+                console.log(list.todos);
+                list.todos.push(todosFactory(input.value));
+                storage.write(list);
                 dom.updateList();
             } else if(e.target.classList.contains('new-list-button')) {
                 const input = document.querySelector('.new-list-input');

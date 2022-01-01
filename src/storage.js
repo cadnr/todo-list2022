@@ -22,6 +22,15 @@ let storage = {
         const listObject = listsFactory(listName);
         storage.write(listObject);
     },
+    fetchList: (listName) => {
+        const arr = storage.read();
+        for (let i = 0; i < arr.length; i++)   {
+            let item = arr[i];
+            if(item.name == listName) {
+                return item;
+            };
+        }
+    },
 };
 
 export { storage };
