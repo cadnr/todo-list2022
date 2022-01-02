@@ -61,6 +61,12 @@ let dom = {
                 deleteButton.textContent = 'Delete';
                 deleteButton.classList.add('delete-button');
                 tempDiv.appendChild(deleteButton);
+
+                const expandedDiv = document.createElement('div');
+                expandedDiv.textContent = element.description;
+                expandedDiv.classList.add('extension');
+
+                tempDiv.appendChild(expandedDiv);
         
                 genList.appendChild(tempDiv);
                 

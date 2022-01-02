@@ -31,3 +31,11 @@ button {
 a.active {
     background-color: orange;
 }
+
+div.extension {
+    display: none;
+}
+
+div.extension.expanded {
+    display: block;
+}

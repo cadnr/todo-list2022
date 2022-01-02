@@ -6,7 +6,7 @@ import { listsFactory, todosFactory } from "./factories";
 const eventListener = () => {
         window.addEventListener('click', e => {
             console.log(e);
-            console.log(e.target.attributes);
+            console.log(e.target);
             if (e.target.classList.contains('delete-button')) {
                 const lists = storage.read();
                 const index = e.path[1].getAttribute('data-index');
@@ -36,6 +36,8 @@ const eventListener = () => {
             } else if (e.target.hasAttribute('data-list-key')) {
                 const newSelectedList = e.target.getAttribute('data-list-key');
                 dom.changeList(newSelectedList);
+            } else if (e.target.hasAttribute('data-index')) {
+                e.target.querySelector('div').classList.toggle('expanded');
             };
         });
     };
