@@ -39,3 +39,11 @@ div.extension {
 div.extension.expanded {
     display: block;
 }
+
+button.delete-button {
+    display: none;
+}
+
+button.delete-button.expanded {
+    display: inline-block;
+}

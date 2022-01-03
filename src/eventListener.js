@@ -38,6 +38,7 @@ const eventListener = () => {
                 dom.changeList(newSelectedList);
             } else if (e.target.hasAttribute('data-index')) {
                 e.target.querySelector('div').classList.toggle('expanded');
+                e.target.querySelector('button').classList.toggle('expanded');
             };
         });
     };
