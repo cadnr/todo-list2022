@@ -5,8 +5,7 @@ import { listsFactory, todosFactory } from "./factories";
 
 const eventListener = () => {
         window.addEventListener('click', e => {
-            console.log(e);
-            console.log(e.target);
+            console.log(e.path);
             if (e.target.classList.contains('delete-button')) {
                 const lists = storage.read();
                 const index = e.path[1].getAttribute('data-index');
@@ -37,8 +36,17 @@ const eventListener = () => {
                 const newSelectedList = e.target.getAttribute('data-list-key');
                 dom.changeList(newSelectedList);
             } else if (e.target.hasAttribute('data-index')) {
-                e.target.querySelector('div').classList.toggle('expanded');
-                e.target.querySelector('button').classList.toggle('expanded');
+                e.target.querySelectorAll('.extension').forEach((e) => {
+                    e.classList.toggle('off');
+                });
+            } else if (e.target.classList.contains('title-span')) {
+                e.path[1].querySelectorAll('.extension').forEach((e) => {
+                    e.classList.toggle('off');
+                });
+            } else if (e.target.classList.contains('edit-button')) {
+                const divs = e.path[1].querySelectorAll('.title-edit, .desc-edit, .title-span, .desc-span');
+                console.log(divs);
+                divs.forEach((e) => { e.classList.toggle('off'); });
             };
         });
     };

@@ -55,18 +55,49 @@ let dom = {
             currentList.forEach((element, index) => {
                 const tempDiv = document.createElement('div');
                 tempDiv.setAttribute('data-index', index);
-                tempDiv.textContent = element.title;
+                const titleSpan = document.createElement('span');
+                titleSpan.classList.add('title-span');
+                titleSpan.textContent = element.title;
+                tempDiv.appendChild(titleSpan);
+                // tempDiv.textContent = element.title;
+
+                const editTitleDiv = document.createElement('div');
+                editTitleDiv.classList.add('edit', 'off');
+                editTitleDiv.classList.add('title-edit');
+                const titleInput = document.createElement('input');
+                titleInput.classList.add('title-input');
+                editTitleDiv.appendChild(titleInput);
+                tempDiv.appendChild(editTitleDiv);
+                
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.classList.add('extension', 'edit-button', 'off');
+                tempDiv.appendChild(editButton);
                 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
-                deleteButton.classList.add('delete-button');
+                deleteButton.classList.add('extension', 'delete-button', 'off');
                 tempDiv.appendChild(deleteButton);
 
                 const expandedDiv = document.createElement('div');
-                expandedDiv.textContent = element.description;
-                expandedDiv.classList.add('extension');
+                // expandedDiv.textContent = element.description;
+                const descSpan = document.createElement('span');
+                descSpan.textContent = element.description;
+                descSpan.classList.add('desc-span');
+                expandedDiv.appendChild(descSpan);
+                expandedDiv.classList.add('extension', 'off');
+
+                const editDescDiv = document.createElement('div');
+                editDescDiv.classList.add('edit', 'off');
+                editDescDiv.classList.add('desc-edit');
+                const descInput = document.createElement('input');
+                descInput.classList.add('desc-input');
+                editDescDiv.appendChild(descInput);
+                expandedDiv.appendChild(editDescDiv);
+
 
                 tempDiv.appendChild(expandedDiv);
+
         
                 genList.appendChild(tempDiv);
                 
