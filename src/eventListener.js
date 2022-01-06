@@ -15,8 +15,7 @@ const eventListener = () => {
                 storage.write(list);
         
                 dom.clearList();
-                dom.updateList
-                ();
+                dom.updateList();
             } else if(e.target.classList.contains('add-button')) {
                 const input = document.querySelector('.add-form');
                 console.log(input.value);
@@ -48,6 +47,22 @@ const eventListener = () => {
                                 .desc-span, .save-button`);
                 console.log(divs);
                 divs.forEach((e) => { e.classList.toggle('off'); });
+            } else if (e.target.classList.contains('save-button')) {
+                const lists = storage.read();
+                const index = e.path[1].getAttribute('data-index');
+                let list = storage.fetchList(dom.selectedList);
+                
+                const titleInput = e.path[1].querySelector('.title-input');
+                const descInput = e.path[1].querySelector('.desc-input');
+
+                console.log(list.todos[index].title);
+                list.todos[index].title = titleInput.value;
+                list.todos[index].description = descInput.value;
+                
+                storage.write(list);
+        
+                dom.clearList();
+                dom.updateList();
             };
         });
     };
