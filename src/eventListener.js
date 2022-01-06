@@ -7,7 +7,7 @@ const eventListener = () => {
         window.addEventListener('click', e => {
             if (e.target.classList.contains('delete-button')) {
                 const lists = storage.read();
-                const index = e.path[1].getAttribute('data-index');
+                const index = e.composedPath()[1].getAttribute('data-index');
                 let list = storage.fetchList(dom.selectedList);
                 list.todos.splice(index, 1);
                 
@@ -18,7 +18,7 @@ const eventListener = () => {
             } else if(e.target.classList.contains('add-button')) {
                 const input = document.querySelector('.add-form');
                 const lists = storage.read();
-                const index = e.path[1].getAttribute('data-index');
+                const index = e.composedPath()[1].getAttribute('data-index');
                 let list = storage.fetchList(dom.selectedList);
                 list.todos.push(todosFactory(input.value));
                 storage.write(list);
@@ -35,20 +35,20 @@ const eventListener = () => {
                     e.classList.toggle('off');
                 });
             } else if (e.target.classList.contains('title-span')) {
-                e.path[1].querySelectorAll('.extension').forEach((e) => {
+                e.composedPath()[1].querySelectorAll('.extension').forEach((e) => {
                     e.classList.toggle('off');
                 });
             } else if (e.target.classList.contains('edit-button')) {
-                const divs = e.path[1].querySelectorAll(`.title-edit, .desc-edit, .title-span, 
+                const divs = e.composedPath()[1].querySelectorAll(`.title-edit, .desc-edit, .title-span, 
                                 .desc-span, .save-button`);
                 divs.forEach((e) => { e.classList.toggle('off'); });
             } else if (e.target.classList.contains('save-button')) {
                 const lists = storage.read();
-                const index = e.path[1].getAttribute('data-index');
+                const index = e.composedPath()[1].getAttribute('data-index');
                 let list = storage.fetchList(dom.selectedList);
                 
-                const titleInput = e.path[1].querySelector('.title-input');
-                const descInput = e.path[1].querySelector('.desc-input');
+                const titleInput = e.composedPath()[1].querySelector('.title-input');
+                const descInput = e.composedPath()[1].querySelector('.desc-input');
 
                 list.todos[index].title = titleInput.value;
                 list.todos[index].description = descInput.value;
