@@ -66,6 +66,7 @@ let dom = {
                 editTitleDiv.classList.add('title-edit');
                 const titleInput = document.createElement('input');
                 titleInput.classList.add('title-input');
+                titleInput.value = element.title;
                 editTitleDiv.appendChild(titleInput);
                 tempDiv.appendChild(editTitleDiv);
                 
@@ -92,6 +93,7 @@ let dom = {
                 editDescDiv.classList.add('desc-edit');
                 const descInput = document.createElement('input');
                 descInput.classList.add('desc-input');
+                descInput.value = element.description;
                 editDescDiv.appendChild(descInput);
                 expandedDiv.appendChild(editDescDiv);
 
