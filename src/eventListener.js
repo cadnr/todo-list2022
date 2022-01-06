@@ -44,7 +44,8 @@ const eventListener = () => {
                     e.classList.toggle('off');
                 });
             } else if (e.target.classList.contains('edit-button')) {
-                const divs = e.path[1].querySelectorAll('.title-edit, .desc-edit, .title-span, .desc-span');
+                const divs = e.path[1].querySelectorAll(`.title-edit, .desc-edit, .title-span, 
+                                .desc-span, .save-button`);
                 console.log(divs);
                 divs.forEach((e) => { e.classList.toggle('off'); });
             };

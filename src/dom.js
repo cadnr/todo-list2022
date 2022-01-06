@@ -70,6 +70,11 @@ let dom = {
                 editTitleDiv.appendChild(titleInput);
                 tempDiv.appendChild(editTitleDiv);
                 
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save';
+                saveButton.classList.add('save-button', 'off');
+                tempDiv.appendChild(saveButton);
+                
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
                 editButton.classList.add('extension', 'edit-button', 'off');
