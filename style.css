@@ -32,18 +32,11 @@ a.active {
     background-color: orange;
 }
 
-div.extension {
-    display: none;
-}
-
-div.extension.expanded {
-    display: block;
-}
-
-button.delete-button {
-    display: none;
-}
-
-button.delete-button.expanded {
+input,
+.edit {
     display: inline-block;
+}
+
+.off {
+    display: none;
 }
