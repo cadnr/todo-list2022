@@ -7,8 +7,6 @@ import { eventListener } from "./eventListener";
 const divList = document.getElementById('list');
 
 let dom = {
-    selectedList: 'defaultList',
-
     clearList: () => {
         divList.replaceChildren();
     },
