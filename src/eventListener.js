@@ -20,9 +20,11 @@ const eventListener = () => {
                 const lists = storage.read();
                 const index = e.composedPath()[1].getAttribute('data-index');
                 let list = storage.fetchList(dom.selectedList);
-                list.todos.push(todosFactory(input.value));
-                storage.write(list);
-                dom.updateList();
+                if(list !== undefined) {
+                    list.todos.push(todosFactory(input.value));
+                    storage.write(list);
+                    dom.updateList();   
+                };
             } else if(e.target.classList.contains('new-list-button')) {
                 const input = document.querySelector('.new-list-input');
                 storage.newList(input.value);
