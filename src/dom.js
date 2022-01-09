@@ -15,6 +15,14 @@ let dom = {
     
         divList.replaceChildren();
         const lists = storage.read();
+
+        if(dom.selectedList === undefined) {
+            const lists = storage.read();
+            if(lists[0]) {
+                dom.selectedList = lists[0].name;
+            };
+        };
+        
         let currentList = [];
         const nav = document.createElement('nav');
         lists.forEach((element) => {
