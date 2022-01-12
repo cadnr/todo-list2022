@@ -40,3 +40,9 @@ input,
 .off {
     display: none;
 }
+
+[data-index] {
+    background-color: blueviolet;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
