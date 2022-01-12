@@ -41,16 +41,16 @@ const eventListener = () => {
                     e.classList.toggle('off');
                 });
             } else if (e.target.classList.contains('edit-button')) {
-                const divs = e.composedPath()[1].querySelectorAll(`.title-edit, .desc-edit, .title-span, 
+                const divs = e.composedPath()[2].querySelectorAll(`.title-edit, .desc-edit, .title-span, 
                                 .desc-span, .save-button`);
                 divs.forEach((e) => { e.classList.toggle('off'); });
             } else if (e.target.classList.contains('save-button')) {
                 const lists = storage.read();
-                const index = e.composedPath()[1].getAttribute('data-index');
+                const index = e.composedPath()[2].getAttribute('data-index');
                 let list = storage.fetchList(dom.selectedList);
                 
-                const titleInput = e.composedPath()[1].querySelector('.title-input');
-                const descInput = e.composedPath()[1].querySelector('.desc-input');
+                const titleInput = e.composedPath()[2].querySelector('.title-input');
+                const descInput = e.composedPath()[2].querySelector('.desc-input');
 
                 list.todos[index].title = titleInput.value;
                 list.todos[index].description = descInput.value;

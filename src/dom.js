@@ -62,6 +62,23 @@ let dom = {
                 const tempDiv = document.createElement('div');
                 tempDiv.setAttribute('data-index', index);
                 
+                const buttonsDiv = document.createElement('div');
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save';
+                saveButton.classList.add('save-button', 'off');
+                buttonsDiv.appendChild(saveButton);
+                
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.classList.add('extension', 'edit-button', 'off');
+                buttonsDiv.appendChild(editButton);
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('extension', 'delete-button', 'off');
+                buttonsDiv.appendChild(deleteButton);
+                tempDiv.appendChild(buttonsDiv);
+                
                 const completionMark = document.createElement('input');
                 completionMark.setAttribute('type', 'checkbox');
                 completionMark.classList.add('item-checkbox')
@@ -83,21 +100,6 @@ let dom = {
                 editTitleDiv.appendChild(titleInput);
                 tempDiv.appendChild(editTitleDiv);
                 
-                const saveButton = document.createElement('button');
-                saveButton.textContent = 'Save';
-                saveButton.classList.add('save-button', 'off');
-                tempDiv.appendChild(saveButton);
-                
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.classList.add('extension', 'edit-button', 'off');
-                tempDiv.appendChild(editButton);
-                
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.classList.add('extension', 'delete-button', 'off');
-                tempDiv.appendChild(deleteButton);
-
                 const expandedDiv = document.createElement('div');
                 // expandedDiv.textContent = element.description;
                 const descSpan = document.createElement('span');
