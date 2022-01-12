@@ -59,6 +59,12 @@ const eventListener = () => {
         
                 dom.clearList();
                 dom.updateList();
+            } else if (e.target.classList.contains('item-checkbox')) {
+                const lists = storage.read();
+                const index = e.composedPath()[1].getAttribute('data-index');
+                let list = storage.fetchList(dom.selectedList);
+                list.todos[index].isCompleted = e.target.checked;
+                storage.write(list);
             };
         });
     };

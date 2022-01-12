@@ -61,6 +61,13 @@ let dom = {
             currentList.forEach((element, index) => {
                 const tempDiv = document.createElement('div');
                 tempDiv.setAttribute('data-index', index);
+                
+                const completionMark = document.createElement('input');
+                completionMark.setAttribute('type', 'checkbox');
+                completionMark.classList.add('item-checkbox')
+                completionMark.checked = element.isCompleted;
+                tempDiv.appendChild(completionMark);
+                
                 const titleSpan = document.createElement('span');
                 titleSpan.classList.add('title-span');
                 titleSpan.textContent = element.title;
